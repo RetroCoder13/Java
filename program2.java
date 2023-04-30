@@ -10,5 +10,7 @@ public class program2 {
         if(password.equals(currentPassword)){
             System.out.println("Your password is: " + password);
         }
+
+        scanner.close();
     }
 }
