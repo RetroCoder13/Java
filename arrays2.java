@@ -8,5 +8,9 @@ public class arrays2 {
         names.add("Murshed");
         names.add("Hamish");
         System.out.println(names);
+        names.remove(1);
+        System.out.println(names);
+        names.remove("Murshed");
+        System.out.println(names);
     }
 }
