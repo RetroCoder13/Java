@@ -10,7 +10,7 @@ public class file {
         try{
             File file = new File("./FileHandling/example.txt");
             FileWriter fileWriter = new FileWriter(file);
-            fileWriter.write("I wrote to a file!!");
+            fileWriter.write(System.console().readLine());
             fileWriter.close();
             Scanner fileReader = new Scanner(file);
             while (fileReader.hasNextLine()) {
