@@ -7,7 +7,7 @@ public class markovChain {
         HashMap<String,HashMap<String,Integer>> markovList = new HashMap<String,HashMap<String,Integer>>();
 
         createMarkov(context, markovList);
-        getNext(prompt, markovList, 100, 0);
+        get(prompt, markovList, 100, 0);
     }
 
     public static void createMarkov(String context, HashMap<String,HashMap<String,Integer>> markovList){
@@ -37,7 +37,7 @@ public class markovChain {
         }
     }
 
-    public static void getNext(String item, HashMap<String,HashMap<String,Integer>> markovList, int iterations, int currentIteration){
+    public static void get(String item, HashMap<String,HashMap<String,Integer>> markovList, int iterations, int currentIteration){
         if(iterations > currentIteration){
             item = item.toUpperCase();
             int count = 0;
@@ -57,7 +57,7 @@ public class markovChain {
                 }
             }
             System.out.println(value);
-            getNext(value, markovList, iterations, currentIteration+1);
+            get(value, markovList, iterations, currentIteration+1);
         }
     }
 }
