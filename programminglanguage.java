@@ -1,6 +1,10 @@
+import java.util.HashMap;
+
 public class programminglanguage {
     public static void main(String args[]){
         String[] input;
+        HashMap<String,String> variables = new HashMap<String,String>();
+
         while(true){
             input = System.console().readLine().split(" ");
             if(input[0].equals("OUT")){
@@ -14,6 +18,11 @@ public class programminglanguage {
                 }
                 function_out("\n");
             }
+
+            if(input[0].equals("VAR")){
+                function_var(input[1], input[2], variables);
+                System.out.println(variables);
+            }
         }
     }
 
@@ -23,6 +32,10 @@ public class programminglanguage {
 
     public static String function_in(){
         return System.console().readLine();
+    }
+
+    public static void function_var(String variableName, String input, HashMap<String,String> variables){
+        variables.put(variableName, input);
     }
 
 
