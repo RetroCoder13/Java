@@ -10,33 +10,37 @@ public class programminglanguage {
 
         while(true){
             input = System.console().readLine().split(" ");
-            if(input[0].equals("OUT")){
-                if(input[1].equals("ADD") || input[1].equals("SUB") || input[1].equals("MUL") || input[1].equals("DIV") || input[1].equals("POW")){
-                    function_out(Double.toString(function_numbers(input[2], input[3], input[1], variables)), variables);
-                } else {
-                    for(int i=0;i<input.length-1;i++){
-                        function_out(input[i+1], variables);
-                        function_out(" ", variables);
-                    }
-                }
-                function_out("\n", variables);
-            }
+            function(input, variables);
+        }
+    }
 
-            if(input[0].equals("VAR")){
-                if(input[2].equals("ADD") || input[2].equals("SUB") || input[2].equals("MUL") || input[2].equals("DIV") || input[2].equals("POW")){
-                    function_var(input[1], Double.toString(function_numbers(input[3], input[4], input[2], variables)), variables);
-                } else {
-                    function_var(input[1], input[2], variables);
+    public static void function(String[] input, HashMap<String,String> variables){
+        if(input[0].equals("OUT")){
+            if(input[1].equals("ADD") || input[1].equals("SUB") || input[1].equals("MUL") || input[1].equals("DIV") || input[1].equals("POW")){
+                function_out(Double.toString(function_numbers(input[2], input[3], input[1], variables)), variables);
+            } else {
+                for(int i=0;i<input.length-1;i++){
+                    function_out(input[i+1], variables);
+                    function_out(" ", variables);
                 }
             }
+            function_out("\n", variables);
+        }
 
-            if(input[0].equals("RUN")){
-                function_run(input[1], variables);
+        if(input[0].equals("VAR")){
+            if(input[2].equals("ADD") || input[2].equals("SUB") || input[2].equals("MUL") || input[2].equals("DIV") || input[2].equals("POW")){
+                function_var(input[1], Double.toString(function_numbers(input[3], input[4], input[2], variables)), variables);
+            } else {
+                function_var(input[1], input[2], variables);
             }
+        }
 
-            if(input[0].equals("EXT")){
-                System.exit(0);
-            }
+        if(input[0].equals("RUN")){
+            function_run(input[1], variables);
+        }
+
+        if(input[0].equals("EXT")){
+            System.exit(0);
         }
     }
 
@@ -47,33 +51,7 @@ public class programminglanguage {
                 Scanner fileRead = new Scanner(file);
                 while(fileRead.hasNextLine()){
                     String[] input = fileRead.nextLine().split(" ");
-                    if(input[0].equals("OUT")){
-                        if(input[1].equals("ADD") || input[1].equals("SUB") || input[1].equals("MUL") || input[1].equals("DIV") || input[1].equals("POW")){
-                            function_out(Double.toString(function_numbers(input[2], input[3], input[1], variables)), variables);
-                        } else {
-                            for(int i=0;i<input.length-1;i++){
-                                function_out(input[i+1], variables);
-                                function_out(" ", variables);
-                            }
-                        }
-                        function_out("\n", variables);
-                    }
-
-                    if(input[0].equals("VAR")){
-                        if(input[2].equals("ADD") || input[2].equals("SUB") || input[2].equals("MUL") || input[2].equals("DIV") || input[2].equals("POW")){
-                            function_var(input[1], Double.toString(function_numbers(input[3], input[4], input[2], variables)), variables);
-                        } else {
-                            function_var(input[1], input[2], variables);
-                        }
-                    }
-
-                    if(input[0].equals("RUN")){
-                        function_run(input[1], variables);
-                    }
-
-                    if(input[0].equals("EXT")){
-                        System.exit(0);
-                    }
+                    function(input, variables);
                 }
             } catch(FileNotFoundException e) {}
         }
