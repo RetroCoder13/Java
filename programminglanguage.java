@@ -28,6 +28,8 @@ public class programminglanguage {
     public static void function_out(String output, HashMap<String,String> variables){
         if(variables.keySet().contains(output)){
             System.out.print(variables.get(output));
+        } else if(output.equals("IN")){
+            System.out.print(function_in());
         } else {
             System.out.print(output);
         }
@@ -38,7 +40,11 @@ public class programminglanguage {
     }
 
     public static void function_var(String variableName, String input, HashMap<String,String> variables){
-        variables.put(variableName, input);
+        if(input.equals("IN")){
+            variables.put(variableName, function_in());
+        } else {
+            variables.put(variableName, input);
+        }
     }
 
 
