@@ -3,8 +3,6 @@ import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Scanner;
 
-import FileHandling.file;
-
 public class programminglanguage {
     public static void main(String args[]){
         String[] input;
