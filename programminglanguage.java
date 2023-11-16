@@ -20,7 +20,11 @@ public class programminglanguage {
             }
 
             if(input[0].equals("VAR")){
-                function_var(input[1], input[2], variables);
+                if(input[2].equals("ADD") || input[2].equals("SUB") || input[2].equals("MUL") || input[2].equals("DIV") || input[2].equals("POW")){
+                    function_var(input[1], Double.toString(function_numbers(input[3], input[4], input[2], variables)), variables);
+                } else {
+                    function_var(input[1], input[2], variables);
+                }
             }
         }
     }
@@ -50,7 +54,7 @@ public class programminglanguage {
 
     public static double function_numbers(String a, String b, String operation, HashMap<String,String> variables){
         if(variables.keySet().contains(a) && variables.keySet().contains(b)){
-if(operation.equals("ADD")){
+            if(operation.equals("ADD")){
                 return function_add(Double.parseDouble(variables.get(a)), Double.parseDouble(variables.get(b)));
             } else if(operation.equals("SUB")){
                 return function_sub(Double.parseDouble(variables.get(a)), Double.parseDouble(variables.get(b)));
