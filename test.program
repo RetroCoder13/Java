@@ -1,0 +1,4 @@
+VAR a IN
+VAR b IN
+OUT ADD a b
+EXT
