@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -41,6 +42,14 @@ public class programminglanguage {
 
         if(input[0].equals("EXT")){
             System.exit(0);
+        }
+
+        if(input[0].equals("IF")){
+            if(input[1].equals("NOT")){
+                function_if(input[2], "false", input[1], Arrays.copyOfRange(input, 3, input.length), variables);
+            } else {
+                function_if(input[2], input[3], input[1], Arrays.copyOfRange(input, 4, input.length), variables);
+            }
         }
     }
 
@@ -144,5 +153,64 @@ public class programminglanguage {
     }
     public static double function_pow(double a, double b){
         return Math.pow(a,b);
+    }
+
+    public static boolean function_compare(String a, String b, String operation, HashMap<String,String> variables){
+        if(variables.keySet().contains(a) && variables.keySet().contains(b)){
+            if(operation.equals("AND")){
+                return function_and(Boolean.parseBoolean(variables.get(a)), Boolean.parseBoolean(variables.get(b)));
+            } else if(operation.equals("OR")){
+                return function_or(Boolean.parseBoolean(variables.get(a)), Boolean.parseBoolean(variables.get(b)));
+            } else if(operation.equals("NOT")){
+                return function_not(Boolean.parseBoolean(variables.get(a)));
+            } else {
+                return false;
+            }
+        } else if(variables.keySet().contains(a)){
+            if(operation.equals("AND")){
+                return function_and(Boolean.parseBoolean(variables.get(a)), Boolean.parseBoolean(b));
+            } else if(operation.equals("OR")){
+                return function_or(Boolean.parseBoolean(variables.get(a)), Boolean.parseBoolean(b));
+            } else if(operation.equals("NOT")){
+                return function_not(Boolean.parseBoolean(variables.get(a)));
+            } else {
+                return false;
+            }
+        } else if(variables.keySet().contains(b)){
+            if(operation.equals("AND")){
+                return function_and(Boolean.parseBoolean(a), Boolean.parseBoolean(variables.get(b)));
+            } else if(operation.equals("OR")){
+                return function_or(Boolean.parseBoolean(a), Boolean.parseBoolean(variables.get(b)));
+            } else if(operation.equals("NOT")){
+                return function_not(Boolean.parseBoolean(a));
+            } else {
+                return false;
+            }
+        } else {
+            if(operation.equals("AND")){
+                return function_and(Boolean.parseBoolean(a), Boolean.parseBoolean(b));
+            } else if(operation.equals("OR")){
+                return function_or(Boolean.parseBoolean(a), Boolean.parseBoolean(b));
+            } else if(operation.equals("NOT")){
+                return function_not(Boolean.parseBoolean(a));
+            } else {
+                return false;
+            }
+        }
+    }
+    public static boolean function_and(boolean a, boolean b){
+        return a && b;
+    }
+    public static boolean function_or(boolean a, boolean b){
+        return a || b;
+    }
+    public static boolean function_not(boolean a){
+        return !a;
+    }
+
+    public static void function_if(String a, String b, String operation, String[] output, HashMap<String,String> variables){
+        if(function_compare(a, b, operation, variables)){
+            function(output, variables);
+        };
     }
 }
