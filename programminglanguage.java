@@ -53,6 +53,7 @@ public class programminglanguage {
                     String[] input = fileRead.nextLine().split(" ");
                     function(input, variables);
                 }
+                fileRead.close();
             } catch(FileNotFoundException e) {}
         }
     }
