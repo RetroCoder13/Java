@@ -163,6 +163,8 @@ public class programminglanguage {
                 return function_or(Boolean.parseBoolean(variables.get(a)), Boolean.parseBoolean(variables.get(b)));
             } else if(operation.equals("NOT")){
                 return function_not(Boolean.parseBoolean(variables.get(a)));
+            } else if(operation.equals("EQL")){
+                return function_equals(variables.get(a).toString(), variables.get(b).toString());
             } else {
                 return false;
             }
@@ -173,6 +175,8 @@ public class programminglanguage {
                 return function_or(Boolean.parseBoolean(variables.get(a)), Boolean.parseBoolean(b));
             } else if(operation.equals("NOT")){
                 return function_not(Boolean.parseBoolean(variables.get(a)));
+            } else if(operation.equals("EQL")){
+                return function_equals(variables.get(a).toString(), b.toString());
             } else {
                 return false;
             }
@@ -183,6 +187,8 @@ public class programminglanguage {
                 return function_or(Boolean.parseBoolean(a), Boolean.parseBoolean(variables.get(b)));
             } else if(operation.equals("NOT")){
                 return function_not(Boolean.parseBoolean(a));
+            } else if(operation.equals("EQL")){
+                return function_equals(a.toString(), variables.get(b).toString());
             } else {
                 return false;
             }
@@ -193,6 +199,8 @@ public class programminglanguage {
                 return function_or(Boolean.parseBoolean(a), Boolean.parseBoolean(b));
             } else if(operation.equals("NOT")){
                 return function_not(Boolean.parseBoolean(a));
+            } else if(operation.equals("EQL")){
+                return function_equals(a.toString(), b.toString());
             } else {
                 return false;
             }
@@ -206,6 +214,9 @@ public class programminglanguage {
     }
     public static boolean function_not(boolean a){
         return !a;
+    }
+    public static boolean function_equals(String a, String b){
+        return a.equals(b);
     }
 
     public static void function_if(String a, String b, String operation, String[] output, HashMap<String,String> variables){
